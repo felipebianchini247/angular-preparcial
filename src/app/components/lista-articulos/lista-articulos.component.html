@@ -1,7 +1,21 @@
 <div>
-  <h1>{{ titulo }}</h1>
+  <h1>{{ titulo + '. Realizado con angular version ' + obtenerVersion() }}</h1>
+  <div class="formulario">
+    <label for="fil"></label>
+    <input
+      type="text"
+      class="control"
+      name="fil"
+      id="fil"
+      placeholder="hii"
+      [(ngModel)]="filtro"
+    />
+  </div>
+  <div clas="text-info">Usted va a filtrar {{ filtro }}</div>
+
   <div class="table-responsive">
-    <table class="table">
+    <p *ngIf="articulos.length == 0">No hay articulos para mostrar</p>
+    <table class="table" *ngIf="articulos.length > 0">
       <thead>
         <tr>
           <th>Imagen</th>
@@ -12,7 +26,30 @@
           <th>Puntaje</th>
         </tr>
       </thead>
-      <tbody></tbody>
+      <tbody>
+        <tr *ngFor="let art of articulos">
+          <!--<td><img [src]="art.imagen" [style.height.px]="alturaImagen" *ngIf="art.active"/></td>-->
+          <td>
+            <input
+              class="btn {{ art.active ? 'btn-warning' : 'btn.primary' }}"
+              type="button"
+              [value]="art.active ? 'Ocultar' : 'Mostrar'"
+              (click)="cambiarEstado(art)"
+            />
+            <img
+              [src]="art.imagen"
+              [style.height.px]="alturaImagen"
+              [style.display]="art.active ? '' : 'none'"
+            />
+          </td>
+          <td>{{ art.descripcion | uppercase }}</td>
+          <td>{{ art.codigo }}</td>
+          <td>{{ art.cantidad }}</td>
+          <td>{{ art.precio | currency: 'ARS':true:'1.0-0' }}</td>
+          <td>{{ art.puntaje }}</td>
+        </tr>
+      </tbody>
     </table>
+    <input type="button" value="Limpiar array" (click)="limpiar()" />
   </div>
 </div>
