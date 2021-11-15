@@ -1,6 +1,7 @@
 import { VERSION } from '@angular/compiler/src/version';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { IArticulo } from '../../models/iarticulo';
 
 @Component({
   selector: 'app-lista-articulos',
@@ -12,7 +13,7 @@ export class ListaArticulosComponent implements OnInit {
   alturaImagen = 40;
   filtro: string;
 
-  articulos: any[] = [
+  articulos: IArticulo[] = [
     {
       id: 2,
       descripcion: 'Articulo X',

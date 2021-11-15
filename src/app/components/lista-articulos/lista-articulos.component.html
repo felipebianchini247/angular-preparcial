@@ -43,7 +43,7 @@
             />
           </td>
           <td>{{ art.descripcion | uppercase }}</td>
-          <td>{{ art.codigo }}</td>
+          <td>{{ art.codigo | convertirAEspacio: '-' }}</td>
           <td>{{ art.cantidad }}</td>
           <td>{{ art.precio | currency: 'ARS':true:'1.0-0' }}</td>
           <td>{{ art.puntaje }}</td>
